@@ -1,0 +1,23 @@
+name: Bump version
+on:
+  push:
+ 
+      
+      
+jobs:
+  buildQA_ENV:
+  
+    environment:
+      name: qa
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        fetch-depth: '0'
+        
+    - name: Delete branch
+      uses: dawidd6/action-delete-branch@v3
+      with:
+        github_token: ${{github.token}}
+        branches: test
+        suffix: -done
